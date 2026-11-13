@@ -1,0 +1,53 @@
+plugins {
+    id 'com.android.application'
+}
+
+def appVersionName = "1.0"
+def appVersionCode = 1
+
+android {
+    namespace 'com.beycude.wss'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId "com.beycude.wss"
+        minSdk 26
+        targetSdk 35
+        versionCode appVersionCode
+        versionName appVersionName
+    }
+
+    signingConfigs {
+        release {
+            def ks = file("wss.jks")
+            if (ks.exists()) {
+                storeFile ks
+                storePassword System.getenv("KEYSTORE_PASSWORD")
+                keyAlias "wss"
+                keyPassword System.getenv("KEYSTORE_PASSWORD")
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            if (file("wss.jks").exists()) {
+                signingConfig signingConfigs.release
+            } else {
+                signingConfig signingConfigs.debug
+            }
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "WorkinSafeAtSea-v${appVersionName}.apk"
+        }
+    }
+}

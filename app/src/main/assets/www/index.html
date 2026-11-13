@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>WorkinSafe at Sea</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header id="top">
+  <div class="brand" onclick="location.hash='#/'">
+    <div class="logo">WSS</div>
+    <div><div class="t1">WorkinSafe at Sea</div><div class="t2">Gemide iş ekipmanı ve kuralları</div></div>
+  </div>
+  <div class="search"><input id="q" type="search" placeholder="Ara: ayakkabı, EN 397, kapalı alan, SOLAS…" autocomplete="off"></div>
+  <nav id="tabs">
+    <a data-tab="isler" href="#/">İşler</a>
+    <a data-tab="ekipman" href="#/ekipman">Ekipman</a>
+    <a data-tab="kurallar" href="#/kurallar">Kurallar</a>
+    <a data-tab="hakkinda" href="#/hakkinda">Hakkında</a>
+  </nav>
+</header>
+<main id="app"></main>
+<div id="toast"></div>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
