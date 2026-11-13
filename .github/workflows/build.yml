@@ -20,6 +20,12 @@ jobs:
         with:
           gradle-version: '8.14.3'
 
+      - name: Surum numarasini oku
+        run: |
+          V=$(grep 'def appVersionName' app/build.gradle | sed -E 's/.*"(.*)".*/\1/')
+          echo "APP_VERSION=$V" >> $GITHUB_ENV
+          echo "Surum: $V, derleme: ${{ github.run_number }}"
+
       - name: Imza anahtarini hazirla
         env:
           KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
@@ -36,8 +42,12 @@ jobs:
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
         run: gradle assembleRelease --no-daemon
 
+      - name: Imza anahtarini sil
+        if: always()
+        run: rm -f app/wss.jks
+
       - name: APK yukle
         uses: actions/upload-artifact@v4
         with:
-          name: WorkinSafeAtSea-v1.0
+          name: WorkinSafeAtSea-v${{ env.APP_VERSION }}-APK-b${{ github.run_number }}
           path: app/build/outputs/apk/release/*.apk
