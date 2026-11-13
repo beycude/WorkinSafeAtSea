@@ -161,7 +161,7 @@
     h += "<h2>Kaynak katmanları</h2>";
     LAYER_ORDER.forEach(function (k) { h += '<div class="card">' + badge(k) + esc(D.layers[k].desc) + "</div>"; });
     h += '<h2>Önemli</h2><div class="card">IMO, iş ayakkabısı veya baret gibi günlük KKD\'yi doğrudan düzenlemez. IMO kuralları daha çok itfaiyeci teçhizatı, can kurtarma, EEBD, kapalı alan ve tanker yükleri gibi alanları kapsar. Günlük KKD\'nin dayanağı MLC 2006 Kural 4.3, ulusal İSG mevzuatı ve EN/ISO standartlarıdır.</div>';
-    h += '<div class="foot">Sürüm 1.0</div>';
+    h += '<div class="foot">Sürüm 1.1 · © beycude, tüm hakları saklıdır</div>';
     app.innerHTML = h;
   }
 
